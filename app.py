@@ -38,19 +38,13 @@ try:
 except ImportError:
     gTTS = None
 
-# Translation
-try:
-    from googletrans import Translator
-except ImportError:
-    Translator = None
-
 st.set_page_config(
     page_title="Applicant CV Screening – Gesner Deslandes",
     page_icon="👔",
     layout="wide"
 )
 
-# ---------- Translation Dictionary ----------
+# ---------- Translation Dictionary (Fully Completed) ----------
 TRANSLATIONS = {
     "en": {
         "app_title": "Applicant CV Screening Software",
@@ -108,7 +102,33 @@ TRANSLATIONS = {
         "actions": "Actions",
         "no_cv": "No CV uploaded yet.",
         "no_jobs": "Please add job positions first.",
-        "recording": "Recording application..."
+        "recording": "Recording application...",
+        "check_breach": "Check email for data breaches",
+        "breach_check": "Checking email in breach databases...",
+        "breach_found": "⚠️ Found in {count} breach(es).",
+        "breach_not_found": "✅ No breaches found.",
+        "breach_error": "Error checking breach.",
+        "unsupported_file": "Unsupported file type.",
+        "analysis_complete": "Analysis complete! Match score: {score}%",
+        "ai_powered": "🤖 AI-Powered Analysis",
+        "summary": "Summary",
+        "strengths": "Strengths",
+        "weaknesses": "Areas for improvement",
+        "recommendation": "Recommendation",
+        "application_recorded": "✅ Application recorded. Email notification ready.",
+        "copy_email_success": "📋 Email copied to clipboard!",
+        "email_sent_success": "✅ Email sent successfully!",
+        "email_sent_fail": "❌ Failed to send email. Check your API key.",
+        "email_api_missing": "⚠️ Please enter your SendGrid API key in the sidebar.",
+        "bulk_analysis_title": "📊 Bulk Analysis Results",
+        "select_candidates": "Select candidates to send acceptance emails to:",
+        "generate_emails": "📝 Generate Emails for Selected",
+        "email_for": "Email for {candidate}",
+        "max_10_files": "Maximum 10 files allowed. Only the first 10 will be processed.",
+        "processing_file": "Processing {file}... ({idx}/{total})",
+        "analysis_complete_bulk": "✅ Analysis complete!",
+        "success_analyzed": "Successfully analyzed {count} files.",
+        "error_extract_text": "Could not extract text from CV.",
     },
     "fr": {
         "app_title": "Logiciel de Criblage de CV",
@@ -166,7 +186,33 @@ TRANSLATIONS = {
         "actions": "Actions",
         "no_cv": "Aucun CV téléchargé.",
         "no_jobs": "Veuillez d'abord ajouter des postes.",
-        "recording": "Enregistrement de la candidature..."
+        "recording": "Enregistrement de la candidature...",
+        "check_breach": "Vérifier l'email dans les fuites de données",
+        "breach_check": "Vérification de l'email dans les bases de données de fuites...",
+        "breach_found": "⚠️ Trouvé dans {count} fuite(s).",
+        "breach_not_found": "✅ Aucune fuite trouvée.",
+        "breach_error": "Erreur lors de la vérification.",
+        "unsupported_file": "Type de fichier non supporté.",
+        "analysis_complete": "Analyse terminée ! Score de correspondance : {score}%",
+        "ai_powered": "🤖 Analyse par IA",
+        "summary": "Résumé",
+        "strengths": "Points forts",
+        "weaknesses": "Points à améliorer",
+        "recommendation": "Recommandation",
+        "application_recorded": "✅ Candidature enregistrée. Email de notification prêt.",
+        "copy_email_success": "📋 Email copié dans le presse-papiers !",
+        "email_sent_success": "✅ Email envoyé avec succès !",
+        "email_sent_fail": "❌ Échec de l'envoi de l'email. Vérifiez votre clé API.",
+        "email_api_missing": "⚠️ Veuillez saisir votre clé API SendGrid dans la barre latérale.",
+        "bulk_analysis_title": "📊 Résultats de l'Analyse en Masse",
+        "select_candidates": "Sélectionnez les candidats pour envoyer des emails d'acceptation :",
+        "generate_emails": "📝 Générer les Emails pour les Sélectionnés",
+        "email_for": "Email pour {candidate}",
+        "max_10_files": "Maximum 10 fichiers autorisés. Seuls les 10 premiers seront traités.",
+        "processing_file": "Traitement de {file}... ({idx}/{total})",
+        "analysis_complete_bulk": "✅ Analyse terminée !",
+        "success_analyzed": "{count} fichiers analysés avec succès.",
+        "error_extract_text": "Impossible d'extraire le texte du CV.",
     },
     "es": {
         "app_title": "Software de Cribado de CV",
@@ -224,7 +270,33 @@ TRANSLATIONS = {
         "actions": "Acciones",
         "no_cv": "No se ha subido ningún CV.",
         "no_jobs": "Por favor, añade puestos primero.",
-        "recording": "Registrando solicitud..."
+        "recording": "Registrando solicitud...",
+        "check_breach": "Verificar correo en filtraciones de datos",
+        "breach_check": "Verificando correo en bases de datos de filtraciones...",
+        "breach_found": "⚠️ Encontrado en {count} filtración(es).",
+        "breach_not_found": "✅ No se encontraron filtraciones.",
+        "breach_error": "Error al verificar filtraciones.",
+        "unsupported_file": "Tipo de archivo no compatible.",
+        "analysis_complete": "¡Análisis completo! Puntuación de coincidencia: {score}%",
+        "ai_powered": "🤖 Análisis con IA",
+        "summary": "Resumen",
+        "strengths": "Fortalezas",
+        "weaknesses": "Áreas de mejora",
+        "recommendation": "Recomendación",
+        "application_recorded": "✅ Solicitud registrada. Email de notificación listo.",
+        "copy_email_success": "📋 ¡Correo copiado al portapapeles!",
+        "email_sent_success": "✅ ¡Correo enviado con éxito!",
+        "email_sent_fail": "❌ Error al enviar el correo. Verifica tu clave API.",
+        "email_api_missing": "⚠️ Por favor, ingresa tu clave API de SendGrid en la barra lateral.",
+        "bulk_analysis_title": "📊 Resultados del Análisis Masivo",
+        "select_candidates": "Selecciona candidatos para enviar correos de aceptación:",
+        "generate_emails": "📝 Generar Correos para los Seleccionados",
+        "email_for": "Correo para {candidate}",
+        "max_10_files": "Máximo 10 archivos permitidos. Solo se procesarán los primeros 10.",
+        "processing_file": "Procesando {file}... ({idx}/{total})",
+        "analysis_complete_bulk": "✅ ¡Análisis completo!",
+        "success_analyzed": "{count} archivos analizados con éxito.",
+        "error_extract_text": "No se pudo extraer el texto del CV.",
     },
     "zh": {
         "app_title": "简历筛选软件",
@@ -282,7 +354,33 @@ TRANSLATIONS = {
         "actions": "操作",
         "no_cv": "尚未上传简历。",
         "no_jobs": "请先添加职位。",
-        "recording": "正在记录申请..."
+        "recording": "正在记录申请...",
+        "check_breach": "检查邮箱是否在数据泄露中",
+        "breach_check": "正在检查邮箱是否在泄露数据库中...",
+        "breach_found": "⚠️ 在 {count} 次数据泄露中找到。",
+        "breach_not_found": "✅ 未发现泄露。",
+        "breach_error": "检查泄露时出错。",
+        "unsupported_file": "不支持的文件类型。",
+        "analysis_complete": "分析完成！匹配分数：{score}%",
+        "ai_powered": "🤖 AI 分析",
+        "summary": "摘要",
+        "strengths": "优势",
+        "weaknesses": "改进领域",
+        "recommendation": "建议",
+        "application_recorded": "✅ 申请已记录。邮件通知已准备。",
+        "copy_email_success": "📋 邮件已复制到剪贴板！",
+        "email_sent_success": "✅ 邮件已成功发送！",
+        "email_sent_fail": "❌ 发送邮件失败。请检查您的 API 密钥。",
+        "email_api_missing": "⚠️ 请在侧边栏输入您的 SendGrid API 密钥。",
+        "bulk_analysis_title": "📊 批量分析结果",
+        "select_candidates": "选择要发送录用邮件的候选人：",
+        "generate_emails": "📝 为所选候选人生成邮件",
+        "email_for": "给 {candidate} 的邮件",
+        "max_10_files": "最多允许10个文件。仅处理前10个。",
+        "processing_file": "正在处理 {file}... ({idx}/{total})",
+        "analysis_complete_bulk": "✅ 分析完成！",
+        "success_analyzed": "成功分析了 {count} 个文件。",
+        "error_extract_text": "无法从简历中提取文本。",
     }
 }
 
@@ -292,7 +390,7 @@ def init_groq_client():
         api_key = st.secrets.get("GROQ_API_KEY")
         if Groq and api_key:
             return Groq(api_key=api_key)
-    except:
+    except Exception:
         pass
     return None
 
@@ -302,20 +400,20 @@ def init_supabase_client():
         key = st.secrets.get("SUPABASE_ANON_KEY")
         if Client and url and key:
             return create_client(url, key)
-    except:
+    except Exception:
         pass
     return None
 
 def get_global_surveillance_key():
     try:
         return st.secrets.get("GLOBAL_SURVEILLANCE_KEY")
-    except:
+    except Exception:
         return None
 
 def get_email_api_key():
     try:
         return st.secrets.get("EMAIL_API_KEY")
-    except:
+    except Exception:
         return None
 
 groq_client = init_groq_client()
@@ -334,6 +432,8 @@ if "ai_email_body" not in st.session_state:
     st.session_state.ai_email_body = ""
 if "bulk_results" not in st.session_state:
     st.session_state.bulk_results = []
+if "edit_id" not in st.session_state:
+    st.session_state.edit_id = None
 
 # Load data from Supabase or session state
 def load_job_positions():
@@ -341,8 +441,10 @@ def load_job_positions():
         try:
             response = supabase_client.table("job_positions").select("*").execute()
             if response.data:
-                return pd.DataFrame(response.data)
-        except:
+                df = pd.DataFrame(response.data)
+                if not df.empty and "id" in df.columns:
+                    return df
+        except Exception:
             pass
     return st.session_state.get("job_positions", pd.DataFrame({
         "id": [1, 2],
@@ -358,7 +460,7 @@ def load_applications():
             response = supabase_client.table("applications").select("*").execute()
             if response.data:
                 return pd.DataFrame(response.data)
-        except:
+        except Exception:
             pass
     return st.session_state.get("applications", pd.DataFrame(columns=["applicant_name", "email", "job_title", "score", "cv_text_preview", "date"]))
 
@@ -382,7 +484,7 @@ def extract_text_from_pdf(file_bytes):
             for page in pdf.pages:
                 text += page.extract_text() or ""
         return text
-    except:
+    except Exception:
         return ""
 
 def extract_text_from_docx(file_bytes):
@@ -396,13 +498,13 @@ def extract_text_from_docx(file_bytes):
         text = docx2txt.process(tmp_path)
         os.unlink(tmp_path)
         return text
-    except:
+    except Exception:
         return ""
 
 def extract_text_from_txt(file_bytes):
     try:
         return file_bytes.decode("utf-8")
-    except:
+    except Exception:
         return ""
 
 def extract_cv_text(uploaded_file):
@@ -418,7 +520,7 @@ def extract_cv_text(uploaded_file):
 
 def compute_match_score(cv_text, job_skills, job_description):
     cv_lower = cv_text.lower()
-    skills_list = [s.strip().lower() for s in job_skills.split(",")]
+    skills_list = [s.strip().lower() for s in job_skills.split(",") if s.strip()]
     matches = 0
     for skill in skills_list:
         if skill in cv_lower:
@@ -453,7 +555,6 @@ def analyze_cv_with_groq(cv_text, job_title, job_description, job_skills):
         "recommendation": "Interview"
     }}
     """
-
     try:
         response = groq_client.chat.completions.create(
             model="mixtral-8x7b-32768",
@@ -472,15 +573,14 @@ def analyze_cv_with_groq(cv_text, job_title, job_description, job_skills):
             result.get("strengths", []),
             result.get("weaknesses", [])
         )
-    except:
+    except Exception:
         return None, None, None, None
 
 def generate_acceptance_email(cv_text, job_title, score, strengths, weaknesses):
     """Generate an acceptance email using Groq AI."""
     if not groq_client:
-        # Fallback email template
-        return f"""
-Subject: Congratulations! You have been selected for {job_title}
+        # Fallback template
+        return f"""Subject: Congratulations! You have been selected for {job_title}
 
 Dear Candidate,
 
@@ -518,7 +618,6 @@ GlobalInternet.py
 
     Format as a complete email with Subject, Salutation, Body, and Closing.
     """
-
     try:
         response = groq_client.chat.completions.create(
             model="mixtral-8x7b-32768",
@@ -530,9 +629,9 @@ GlobalInternet.py
             max_tokens=600
         )
         return response.choices[0].message.content
-    except:
-        return """
-Subject: Congratulations! You have been selected for {job_title}
+    except Exception:
+        # Fallback if AI fails
+        return f"""Subject: Congratulations! You have been selected for {job_title}
 
 Dear Candidate,
 
@@ -560,13 +659,13 @@ def check_email_breach(email):
             data = response.json()
             breaches = data.get("breaches", [])
             if breaches:
-                return True, f"⚠️ Found in {len(breaches)} breach(es)."
+                return True, len(breaches)
             else:
-                return False, "✅ No breaches found."
+                return False, 0
         else:
-            return None, f"API error: {response.status_code}"
-    except:
-        return None, "Error checking breach."
+            return None, None
+    except Exception:
+        return None, None
 
 def save_to_supabase(table, data):
     if not supabase_client:
@@ -574,11 +673,28 @@ def save_to_supabase(table, data):
     try:
         supabase_client.table(table).insert(data).execute()
         return True
-    except:
+    except Exception:
+        return False
+
+def delete_from_supabase(table, id_value, id_column="id"):
+    if not supabase_client:
+        return False
+    try:
+        supabase_client.table(table).delete().eq(id_column, id_value).execute()
+        return True
+    except Exception:
+        return False
+
+def update_supabase(table, id_value, data, id_column="id"):
+    if not supabase_client:
+        return False
+    try:
+        supabase_client.table(table).update(data).eq(id_column, id_value).execute()
+        return True
+    except Exception:
         return False
 
 def text_to_speech(text, lang):
-    """Generate audio from text using gTTS."""
     if not gTTS:
         return None
     try:
@@ -587,11 +703,10 @@ def text_to_speech(text, lang):
         tts.write_to_fp(audio_bytes)
         audio_bytes.seek(0)
         return audio_bytes
-    except:
+    except Exception:
         return None
 
 def send_email_with_sendgrid(api_key, to_email, subject, body):
-    """Send email using SendGrid API."""
     try:
         url = "https://api.sendgrid.com/v3/mail/send"
         headers = {
@@ -606,8 +721,80 @@ def send_email_with_sendgrid(api_key, to_email, subject, body):
         }
         response = requests.post(url, json=data, headers=headers, timeout=30)
         return response.status_code == 202
-    except:
+    except Exception:
         return False
+
+# ---------- Custom CSS ----------
+st.markdown("""
+<style>
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.spinning-recruit {
+    animation: spin 4s linear infinite;
+    font-size: 60px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.stApp {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+}
+[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #0b2b2b, #1a4a4a);
+}
+.stButton button {
+    background-color: #ff6b6b !important;
+    color: white !important;
+    border-radius: 30px !important;
+    font-weight: bold;
+}
+h1, h2, h3, p, div, span, label {
+    color: #ffffff !important;
+}
+.job-card {
+    background: rgba(255,255,255,0.1);
+    border-radius: 15px;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border-left: 5px solid #ff9a3c;
+}
+.score-high {
+    color: #a5ffb2;
+    font-weight: bold;
+}
+.score-medium {
+    color: #ffd966;
+    font-weight: bold;
+}
+.score-low {
+    color: #ff8a8a;
+    font-weight: bold;
+}
+.ai-badge {
+    background: #6c5ce7;
+    color: white;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    display: inline-block;
+}
+.breach-warning {
+    background: #ff6b6b;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+.breach-safe {
+    background: #51cf66;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+</style>
+""", unsafe_allow_html=True)
 
 # ---------- Login Page ----------
 def login():
@@ -712,7 +899,6 @@ def main_app():
     st.markdown(f"### {t('app_subtitle')}")
     st.markdown("---")
 
-    # Add Bulk Screening tab
     tabs = st.tabs([
         t("job_positions"),
         t("screen_cv"),
@@ -766,34 +952,33 @@ def main_app():
                         with col_b:
                             if st.button(t("delete"), key=f"del_{row['id']}"):
                                 if supabase_client:
-                                    supabase_client.table("job_positions").delete().eq("id", row['id']).execute()
+                                    delete_from_supabase("job_positions", row['id'])
                                 st.session_state.job_positions = st.session_state.job_positions[
                                     st.session_state.job_positions['id'] != row['id']
                                 ]
                                 st.rerun()
-                if 'edit_id' in st.session_state:
+                if st.session_state.edit_id is not None:
+                    row_edit = st.session_state.job_positions[st.session_state.job_positions['id'] == st.session_state.edit_id].iloc[0]
                     st.markdown("---")
-                    st.subheader(f"Editing: {st.session_state.edit_title}")
-                    new_title = st.text_input(t("job_title"), value=st.session_state.edit_title)
-                    new_desc = st.text_area(t("job_description"), value=st.session_state.edit_desc)
-                    new_skills = st.text_input(t("required_skills"), value=st.session_state.edit_skills)
-                    new_exp = st.number_input(t("min_experience"), value=int(st.session_state.edit_exp))
+                    st.subheader(f"Editing: {row_edit['title']}")
+                    new_title = st.text_input(t("job_title"), value=row_edit['title'])
+                    new_desc = st.text_area(t("job_description"), value=row_edit['description'])
+                    new_skills = st.text_input(t("required_skills"), value=row_edit['required_skills'])
+                    new_exp = st.number_input(t("min_experience"), value=int(row_edit['min_experience']))
                     if st.button(t("save_changes")):
-                        idx = st.session_state.job_positions[
-                            st.session_state.job_positions['id'] == st.session_state.edit_id
-                        ].index[0]
+                        idx = st.session_state.job_positions[st.session_state.job_positions['id'] == st.session_state.edit_id].index[0]
                         st.session_state.job_positions.at[idx, 'title'] = new_title
                         st.session_state.job_positions.at[idx, 'description'] = new_desc
                         st.session_state.job_positions.at[idx, 'required_skills'] = new_skills
                         st.session_state.job_positions.at[idx, 'min_experience'] = new_exp
                         if supabase_client:
-                            supabase_client.table("job_positions").update({
+                            update_supabase("job_positions", st.session_state.edit_id, {
                                 "title": new_title,
                                 "description": new_desc,
                                 "required_skills": new_skills,
                                 "min_experience": new_exp
-                            }).eq("id", st.session_state.edit_id).execute()
-                        del st.session_state.edit_id
+                            })
+                        st.session_state.edit_id = None
                         st.rerun()
             else:
                 st.info("No job positions yet. Add one above.")
@@ -814,15 +999,15 @@ def main_app():
         job_options = st.session_state.job_positions['title'].tolist()
         selected_job = st.selectbox(t("select_job"), job_options) if job_options else None
 
-        if applicant_email and st.checkbox("Check email for data breaches"):
-            with st.spinner("Checking email..."):
-                breached, breach_message = check_email_breach(applicant_email)
+        if applicant_email and st.checkbox(t("check_breach")):
+            with st.spinner(t("breach_check")):
+                breached, count = check_email_breach(applicant_email)
                 if breached is True:
-                    st.markdown(f'<p class="breach-warning">{breach_message}</p>', unsafe_allow_html=True)
+                    st.markdown(f'<p class="breach-warning">{t("breach_found").format(count=count)}</p>', unsafe_allow_html=True)
                 elif breached is False:
-                    st.markdown(f'<p class="breach-safe">{breach_message}</p>', unsafe_allow_html=True)
+                    st.markdown(f'<p class="breach-safe">{t("breach_not_found")}</p>', unsafe_allow_html=True)
                 else:
-                    st.warning(breach_message)
+                    st.warning(t("breach_error"))
 
         if st.button(t("analyze_cv")) and uploaded_cv and applicant_name and selected_job:
             with st.spinner(t("recording")):
@@ -842,9 +1027,8 @@ def main_app():
                     if ai_score is not None:
                         score = ai_score
                         st.markdown("---")
-                        st.markdown(f'<span class="ai-badge">🤖 AI-Powered Analysis</span>', unsafe_allow_html=True)
+                        st.markdown(f'<span class="ai-badge">{t("ai_powered")}</span>', unsafe_allow_html=True)
                         st.markdown(f"### Match Score: **{score}%**")
-
                         if score >= 70:
                             st.markdown(f'<p class="score-high">{t("highly_qualified")} – Score: {score}%</p>', unsafe_allow_html=True)
                         elif score >= 50:
@@ -852,13 +1036,13 @@ def main_app():
                         else:
                             st.markdown(f'<p class="score-low">{t("low_match")} – Score: {score}%</p>', unsafe_allow_html=True)
 
-                        st.markdown(f"**Summary:** {ai_summary}")
+                        st.markdown(f"**{t('summary')}:** {ai_summary}")
                         if ai_strengths:
-                            st.markdown("**Strengths:**")
+                            st.markdown(f"**{t('strengths')}:**")
                             for s in ai_strengths:
                                 st.markdown(f"- ✅ {s}")
                         if ai_weaknesses:
-                            st.markdown("**Areas for improvement:**")
+                            st.markdown(f"**{t('weaknesses')}:**")
                             for w in ai_weaknesses:
                                 st.markdown(f"- ⚠️ {w}")
 
@@ -873,8 +1057,7 @@ def main_app():
                         col1, col2 = st.columns(2)
                         with col1:
                             if st.button(t("copy_email")):
-                                st.write("📋 Email copied to clipboard!")
-
+                                st.write(t("copy_email_success"))
                         with col2:
                             if st.button(t("generate_email")):
                                 st.session_state.ai_email_body = generate_acceptance_email(
@@ -883,13 +1066,20 @@ def main_app():
                                 st.rerun()
                     else:
                         score = compute_match_score(cv_text, job_row['required_skills'], job_row['description'])
-                        st.success(f"Analysis complete! Match score: {score}%")
+                        st.success(t("analysis_complete").format(score=score))
                         if score >= 70:
                             st.markdown(f'<p class="score-high">{t("highly_qualified")} – Score: {score}%</p>', unsafe_allow_html=True)
                         elif score >= 50:
                             st.markdown(f'<p class="score-medium">{t("partially_qualified")} – Score: {score}%</p>', unsafe_allow_html=True)
                         else:
                             st.markdown(f'<p class="score-low">{t("low_match")} – Score: {score}%</p>', unsafe_allow_html=True)
+
+                        # Generate fallback email
+                        email_body = generate_acceptance_email(cv_text, job_row['title'], score, [], [])
+                        st.session_state.ai_email_body = email_body
+                        st.markdown("---")
+                        st.subheader(t("ai_email_generator"))
+                        st.text_area(t("email_body"), email_body, height=200)
 
                     new_app = {
                         "applicant_name": applicant_name,
@@ -906,9 +1096,9 @@ def main_app():
                         pd.DataFrame([new_app])
                     ], ignore_index=True)
 
-                    st.info(f"✅ Application recorded. Email notification ready.")
+                    st.info(t("application_recorded"))
                 else:
-                    st.error("Could not extract text from CV.")
+                    st.error(t("error_extract_text"))
         elif not selected_job:
             st.warning(t("no_jobs"))
 
@@ -955,21 +1145,20 @@ def main_app():
         if st.session_state.ai_email_body:
             st.text_area("Generated Email", st.session_state.ai_email_body, height=250)
 
-            # Send email directly from app
             with st.expander("📤 Send Email to Candidate"):
                 recipient = st.text_input(t("recipient_email"), value="")
                 subject = st.text_input(t("subject"), value="Congratulations! You have been selected")
                 email_body_edit = st.text_area(t("email_body"), st.session_state.ai_email_body, height=200)
 
                 if st.button(t("send_email")):
-                    if email_api_input or email_api_key:
-                        key = email_api_input or email_api_key
-                        if send_email_with_sendgrid(key, recipient, subject, email_body_edit):
-                            st.success("✅ Email sent successfully!")
+                    api_key_to_use = email_api_input or email_api_key
+                    if api_key_to_use:
+                        if send_email_with_sendgrid(api_key_to_use, recipient, subject, email_body_edit):
+                            st.success(t("email_sent_success"))
                         else:
-                            st.error("❌ Failed to send email. Check your API key.")
+                            st.error(t("email_sent_fail"))
                     else:
-                        st.warning("⚠️ Please enter your SendGrid API key in the sidebar.")
+                        st.warning(t("email_api_missing"))
         else:
             st.info("Analyze a CV first to generate an acceptance email.")
 
@@ -982,19 +1171,19 @@ def main_app():
         bulk_job = st.selectbox("Select Job Position for Bulk Analysis", job_options) if job_options else None
 
         if not bulk_job:
-            st.warning("Please add a job position first.")
+            st.warning(t("no_jobs"))
         else:
             uploaded_files = st.file_uploader(
-                "Upload Multiple Files (PDF, DOCX, TXT)",
+                t("bulk_upload"),
                 type=["pdf", "docx", "txt"],
                 accept_multiple_files=True
             )
 
             if uploaded_files and len(uploaded_files) > 10:
-                st.warning("Maximum 10 files allowed. Only the first 10 will be processed.")
+                st.warning(t("max_10_files"))
                 uploaded_files = uploaded_files[:10]
 
-            if uploaded_files and st.button("🔍 Analyze All CVs"):
+            if uploaded_files and st.button(t("bulk_analyze")):
                 st.session_state.bulk_results = []
                 progress_bar = st.progress(0)
                 status_text = st.empty()
@@ -1004,28 +1193,27 @@ def main_app():
                 ].iloc[0]
 
                 for idx, file in enumerate(uploaded_files):
-                    status_text.text(f"Processing {file.name}... ({idx+1}/{len(uploaded_files)})")
-
-                    # Extract text
+                    status_text.text(t("processing_file").format(file=file.name, idx=idx+1, total=len(uploaded_files)))
                     cv_text = extract_cv_text(file)
-
                     if cv_text and len(cv_text) > 50:
-                        # Try AI analysis first
                         ai_score, ai_summary, ai_strengths, ai_weaknesses = analyze_cv_with_groq(
                             cv_text,
                             job_row['title'],
                             job_row['description'],
                             job_row['required_skills']
                         )
-
                         if ai_score is not None:
                             score = ai_score
                             recommendation = "Interview" if score >= 70 else ("Review" if score >= 50 else "Reject")
                             summary = ai_summary or "Analysis completed."
+                            strengths = ai_strengths
+                            weaknesses = ai_weaknesses
                         else:
                             score = compute_match_score(cv_text, job_row['required_skills'], job_row['description'])
                             recommendation = "Interview" if score >= 70 else ("Review" if score >= 50 else "Reject")
                             summary = "Keyword-based analysis completed."
+                            strengths = []
+                            weaknesses = []
 
                         result = {
                             "file_name": file.name,
@@ -1033,8 +1221,8 @@ def main_app():
                             "score": score,
                             "recommendation": recommendation,
                             "summary": summary,
-                            "strengths": ai_strengths if ai_strengths else [],
-                            "weaknesses": ai_weaknesses if ai_weaknesses else [],
+                            "strengths": strengths,
+                            "weaknesses": weaknesses,
                             "cv_text": cv_text[:500] + "..."
                         }
                         st.session_state.bulk_results.append(result)
@@ -1049,62 +1237,59 @@ def main_app():
                             "weaknesses": [],
                             "cv_text": ""
                         })
-
                     progress_bar.progress((idx + 1) / len(uploaded_files))
 
-                status_text.text("✅ Analysis complete!")
-                st.success(f"Successfully analyzed {len(st.session_state.bulk_results)} files.")
+                status_text.text(t("analysis_complete_bulk"))
+                st.success(t("success_analyzed").format(count=len(st.session_state.bulk_results)))
 
             # Display bulk results
             if st.session_state.bulk_results:
                 st.markdown("---")
-                st.subheader("📊 Bulk Analysis Results")
+                st.subheader(t("bulk_analysis_title"))
 
                 results_df = pd.DataFrame(st.session_state.bulk_results)[
                     ["file_name", "candidate_name", "score", "recommendation", "summary"]
                 ]
                 st.dataframe(results_df, use_container_width=True)
 
-                # Show details for each candidate
                 for idx, result in enumerate(st.session_state.bulk_results):
                     with st.expander(f"📄 {result['candidate_name']} - Score: {result['score']}% - {result['recommendation']}"):
                         st.markdown(f"**File:** {result['file_name']}")
                         st.markdown(f"**Score:** {result['score']}%")
                         st.markdown(f"**Recommendation:** {result['recommendation']}")
                         st.markdown(f"**Summary:** {result['summary']}")
-
                         if result['strengths']:
                             st.markdown("**Strengths:**")
                             for s in result['strengths']:
                                 st.markdown(f"- ✅ {s}")
-
                         if result['weaknesses']:
                             st.markdown("**Areas for improvement:**")
                             for w in result['weaknesses']:
                                 st.markdown(f"- ⚠️ {w}")
-
                         st.text_area("CV Preview", result['cv_text'], height=100)
 
-                # Generate bulk acceptance emails
                 st.markdown("---")
                 st.subheader("📧 Generate Acceptance Emails for All Shortlisted Candidates")
 
-                selected_candidates = st.multiselect(
-                    "Select candidates to send acceptance emails to:",
-                    [r['candidate_name'] for r in st.session_state.bulk_results if r['score'] >= 70]
-                )
-
-                if selected_candidates and st.button("📝 Generate Emails for Selected"):
-                    for candidate in selected_candidates:
-                        result = next(r for r in st.session_state.bulk_results if r['candidate_name'] == candidate)
-                        email = generate_acceptance_email(
-                            result['cv_text'],
-                            bulk_job,
-                            result['score'],
-                            result['strengths'],
-                            result['weaknesses']
-                        )
-                        st.text_area(f"Email for {candidate}", email, height=200)
+                shortlisted = [r for r in st.session_state.bulk_results if r['score'] >= 70]
+                if shortlisted:
+                    selected_candidates = st.multiselect(
+                        t("select_candidates"),
+                        [r['candidate_name'] for r in shortlisted]
+                    )
+                    if selected_candidates and st.button(t("generate_emails")):
+                        for candidate in selected_candidates:
+                            result = next(r for r in st.session_state.bulk_results if r['candidate_name'] == candidate)
+                            email = generate_acceptance_email(
+                                result['cv_text'],
+                                bulk_job,
+                                result['score'],
+                                result['strengths'],
+                                result['weaknesses']
+                            )
+                            st.text_area(t("email_for").format(candidate=candidate), email, height=200)
+                else:
+                    st.info("No candidates with a score >= 70% to shortlist.")
 
 if not st.session_state.authenticated:
     login()
