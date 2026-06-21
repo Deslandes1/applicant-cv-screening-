@@ -44,7 +44,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# ---------- Translation Dictionary (Fully Completed) ----------
+# ---------- Translation Dictionary ----------
 TRANSLATIONS = {
     "en": {
         "app_title": "Applicant CV Screening Software",
@@ -129,6 +129,8 @@ TRANSLATIONS = {
         "analysis_complete_bulk": "✅ Analysis complete!",
         "success_analyzed": "Successfully analyzed {count} files.",
         "error_extract_text": "Could not extract text from CV.",
+        "describe_app": "🎤 Describe This App",
+        "listening_guide": "📢 Audio description is playing..."
     },
     "fr": {
         "app_title": "Logiciel de Criblage de CV",
@@ -213,6 +215,8 @@ TRANSLATIONS = {
         "analysis_complete_bulk": "✅ Analyse terminée !",
         "success_analyzed": "{count} fichiers analysés avec succès.",
         "error_extract_text": "Impossible d'extraire le texte du CV.",
+        "describe_app": "🎤 Décrire cette Application",
+        "listening_guide": "📢 La description audio est en cours de lecture..."
     },
     "es": {
         "app_title": "Software de Cribado de CV",
@@ -297,6 +301,8 @@ TRANSLATIONS = {
         "analysis_complete_bulk": "✅ ¡Análisis completo!",
         "success_analyzed": "{count} archivos analizados con éxito.",
         "error_extract_text": "No se pudo extraer el texto del CV.",
+        "describe_app": "🎤 Describir esta Aplicación",
+        "listening_guide": "📢 Reproduciendo descripción de audio..."
     },
     "zh": {
         "app_title": "简历筛选软件",
@@ -381,8 +387,145 @@ TRANSLATIONS = {
         "analysis_complete_bulk": "✅ 分析完成！",
         "success_analyzed": "成功分析了 {count} 个文件。",
         "error_extract_text": "无法从简历中提取文本。",
+        "describe_app": "🎤 描述此应用",
+        "listening_guide": "📢 正在播放音频描述..."
     }
 }
+
+# ---------- App Description Function ----------
+def get_app_description(lang):
+    """Return a detailed description of the app in the selected language."""
+    descriptions = {
+        "en": """
+Welcome to the Applicant CV Screening Software, created by Gesner Deslandes, Engineer in Chief at Globalinternet.py.
+
+This powerful recruitment tool helps you screen CVs, cover letters, and bio documents with lightning speed.
+
+Here is how to use it:
+
+First, log in with your admin password. Then, navigate through the tabs:
+
+- In the "Job Positions" tab, you can add, edit, or delete job openings. Each position includes a title, description, required skills, and minimum experience.
+
+- In the "Screen CV" tab, enter the applicant's name and email, upload their CV (PDF, DOCX, or TXT), and select a job. The system will extract the text and analyze it using either our AI engine (Groq) or a keyword-based fallback. You'll get a match score, a summary, strengths, weaknesses, and a recommendation. You can also check if the email has been involved in a data breach.
+
+- Once analyzed, an AI-generated acceptance email is automatically created. You can copy it to your clipboard, or if you have a SendGrid API key, send it directly from the app.
+
+- The "Bulk Screening" tab allows you to upload up to 10 documents at once and analyze them all simultaneously. You can then generate acceptance emails for the shortlisted candidates.
+
+- The "Applications" tab displays all screened candidates with their scores and dates. You can export the data to CSV.
+
+Additional features: 
+- You can change the app's language to English, French, Spanish, or Chinese using the sidebar.
+- The AI Voice feature can read any text aloud in your chosen language, including the acceptance email.
+
+This software was designed to save recruiters hours of manual work and help you find the best talent faster.
+
+We are proud to say: We are the best!
+
+For any questions, contact us:
+Gesner Deslandes / Engineer in Chief at Globalinternet.py
+Phone: (509) 4738-5663
+Email: deslandes78@gmail.com
+""",
+        "fr": """
+Bienvenue dans le Logiciel de Criblage de CV, créé par Gesner Deslandes, Ingénieur en Chef chez Globalinternet.py.
+
+Cet outil de recrutement puissant vous aide à analyser des CV, des lettres de motivation et des documents bio à une vitesse fulgurante.
+
+Voici comment l'utiliser :
+
+Connectez-vous d'abord avec votre mot de passe administrateur. Ensuite, naviguez dans les onglets :
+
+- Dans l'onglet "Postes", vous pouvez ajouter, modifier ou supprimer des offres d'emploi. Chaque poste comprend un titre, une description, les compétences requises et l'expérience minimale.
+
+- Dans l'onglet "Cribler un CV", saisissez le nom et l'email du candidat, téléchargez son CV (PDF, DOCX ou TXT) et sélectionnez un poste. Le système extraira le texte et l'analysera soit par notre moteur IA (Groq), soit par une méthode de mots-clés. Vous obtiendrez un score de correspondance, un résumé, des points forts, des points faibles et une recommandation. Vous pouvez également vérifier si l'email a été compromis dans une fuite de données.
+
+- Une fois analysé, un email d'acceptation généré par IA est automatiquement créé. Vous pouvez le copier dans le presse-papiers, ou si vous avez une clé API SendGrid, l'envoyer directement depuis l'application.
+
+- L'onglet "Criblage en Masse" vous permet de télécharger jusqu'à 10 documents à la fois et de les analyser simultanément. Vous pouvez ensuite générer des emails d'acceptation pour les candidats présélectionnés.
+
+- L'onglet "Candidatures" affiche tous les candidats criblés avec leurs scores et dates. Vous pouvez exporter les données en CSV.
+
+Fonctionnalités supplémentaires :
+- Vous pouvez changer la langue de l'application en anglais, français, espagnol ou chinois via la barre latérale.
+- La fonction "Voix IA" peut lire n'importe quel texte à voix haute dans la langue choisie, y compris l'email d'acceptation.
+
+Ce logiciel a été conçu pour faire gagner des heures de travail manuel aux recruteurs et vous aider à trouver les meilleurs talents plus rapidement.
+
+Nous sommes fiers de dire : Nous sommes les meilleurs !
+
+Pour toute question, contactez-nous :
+Gesner Deslandes / Ingénieur en Chef chez Globalinternet.py
+Téléphone : (509) 4738-5663
+Email : deslandes78@gmail.com
+""",
+        "es": """
+Bienvenido al Software de Cribado de CV, creado por Gesner Deslandes, Ingeniero Jefe en Globalinternet.py.
+
+Esta poderosa herramienta de reclutamiento le ayuda a analizar CV, cartas de presentación y documentos biográficos a gran velocidad.
+
+Así es como se usa:
+
+Primero, inicie sesión con su contraseña de administrador. Luego, navegue por las pestañas:
+
+- En la pestaña "Puestos", puede agregar, editar o eliminar ofertas de trabajo. Cada puesto incluye título, descripción, habilidades requeridas y experiencia mínima.
+
+- En la pestaña "Evaluar CV", ingrese el nombre y correo del candidato, suba su CV (PDF, DOCX o TXT) y seleccione un puesto. El sistema extraerá el texto y lo analizará mediante nuestro motor de IA (Groq) o un método basado en palabras clave. Obtendrá una puntuación de coincidencia, un resumen, fortalezas, debilidades y una recomendación. También puede verificar si el correo ha estado en una filtración de datos.
+
+- Una vez analizado, se genera automáticamente un correo de aceptación por IA. Puede copiarlo al portapapeles o, si tiene una clave API de SendGrid, enviarlo directamente desde la aplicación.
+
+- La pestaña "Evaluación Masiva" le permite subir hasta 10 documentos a la vez y analizarlos simultáneamente. Luego puede generar correos de aceptación para los candidatos preseleccionados.
+
+- La pestaña "Solicitudes" muestra todos los candidatos evaluados con sus puntuaciones y fechas. Puede exportar los datos a CSV.
+
+Características adicionales:
+- Puede cambiar el idioma de la aplicación a inglés, francés, español o chino desde la barra lateral.
+- La función "Voz IA" puede leer cualquier texto en voz alta en el idioma elegido, incluido el correo de aceptación.
+
+Este software fue diseñado para ahorrar horas de trabajo manual a los reclutadores y ayudarle a encontrar el mejor talento más rápido.
+
+Estamos orgullosos de decir: ¡Somos los mejores!
+
+Para cualquier pregunta, contáctenos:
+Gesner Deslandes / Ingeniero Jefe en Globalinternet.py
+Teléfono: (509) 4738-5663
+Email: deslandes78@gmail.com
+""",
+        "zh": """
+欢迎使用简历筛选软件，由 Globalinternet.py 首席工程师 Gesner Deslandes 创建。
+
+这款强大的招聘工具可帮助您快速筛选简历、求职信和个人简介文档。
+
+使用方法如下：
+
+首先，使用管理员密码登录。然后，通过选项卡导航：
+
+- 在“职位管理”选项卡中，您可以添加、编辑或删除职位空缺。每个职位包括标题、描述、所需技能和最低经验。
+
+- 在“简历筛选”选项卡中，输入申请人姓名和邮箱，上传简历（PDF、DOCX 或 TXT），然后选择一个职位。系统将提取文本并使用我们的 AI 引擎（Groq）或基于关键词的方法进行分析。您将获得匹配分数、摘要、优势、不足和建议。您还可以检查邮箱是否曾涉及数据泄露。
+
+- 分析完成后，AI 会自动生成录用邮件。您可以将其复制到剪贴板，或者如果您有 SendGrid API 密钥，可以直接从应用发送。
+
+- “批量筛选”选项卡允许您一次上传多达 10 份文档并同时进行分析。然后您可以为入围的候选人生成录用邮件。
+
+- “申请记录”选项卡显示所有已筛选的候选人及其分数和日期。您可以将数据导出为 CSV。
+
+附加功能：
+- 您可以通过侧边栏将应用语言切换为英语、法语、西班牙语或中文。
+- “AI 语音”功能可以用您选择的语言朗读任何文本，包括录用邮件。
+
+本软件旨在为招聘人员节省数小时的繁琐工作，并帮助您更快地找到最佳人才。
+
+我们自豪地说：我们是最棒的！
+
+如有任何问题，请联系我们：
+Gesner Deslandes / Globalinternet.py 首席工程师
+电话：(509) 4738-5663
+邮箱：deslandes78@gmail.com
+"""
+    }
+    return descriptions.get(lang, descriptions["en"])
 
 # ---------- Initialize API Clients ----------
 def init_groq_client():
@@ -861,6 +1004,16 @@ def main_app():
             index=list(voice_lang_map.values()).index(st.session_state.voice_language)
         )
         st.session_state.voice_language = voice_lang_map[selected_voice]
+
+        # NEW: Describe App Button
+        if st.button(t("describe_app")):
+            description = get_app_description(st.session_state.voice_language)
+            audio = text_to_speech(description, st.session_state.voice_language)
+            if audio:
+                st.audio(audio, format="audio/mp3")
+                st.success(t("listening_guide"))
+            else:
+                st.error("gTTS not installed. Please run: pip install gTTS")
 
         voice_text = st.text_area("Text to Speak", "Welcome to GlobalInternet.py recruitment system.", height=80)
         if st.button(t("speak_text")):
